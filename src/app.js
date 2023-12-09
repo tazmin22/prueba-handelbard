@@ -1,8 +1,10 @@
 const express = require('express')
 const handlebars = require('express-handlebars')
 const {PManager} = require ("./ProductManager")
-const productsRouter = require ("./routes/products.router.js")
-const cartsRouter = require ("./routes/carts.router.js")
+const productsRouter = require ("./routes/apis/products.router.js")
+const cartsRouter = require ("./routes/apis/carts.router.js")
+const viewsRouter = require ("./routes/views.router.js")
+
 
 const app = express()
 const port = 8080
@@ -16,12 +18,7 @@ app.engine('handlebars', handlebars.engine())
 app.set('view engine', 'handlebars')
 app.set('views', __dirname + '/views')
 
-app.get('/views', (req,res) =>{
-  res.render('index', {
-    title: 'TIENDITA',
-    name: 'usuario'
-  })
-})
+app.use ('/views', viewsRouter)
 
 app.use('/api/products/', productsRouter)
 app.use('/api/carts/', cartsRouter)

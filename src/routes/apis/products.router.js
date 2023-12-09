@@ -1,5 +1,5 @@
 const {Router} = require('express')
-const {PManager} = require ("../ProductManager")
+const {PManager} = require ("../../ProductManager")
 const router = Router();
 
 const productManager = new PManager ("./prueba.json")
