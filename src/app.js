@@ -4,6 +4,7 @@ const {PManager} = require ("./ProductManager")
 const productsRouter = require ("./routes/apis/products.router.js")
 const cartsRouter = require ("./routes/apis/carts.router.js")
 const viewsRouter = require ("./routes/views.router.js")
+const newProductsRouter = require ("./routes/productos.router.js")
 
 
 const app = express()
@@ -18,7 +19,11 @@ app.engine('handlebars', handlebars.engine())
 app.set('view engine', 'handlebars')
 app.set('views', __dirname + '/views')
 
+
+//CONFIGURACION DE RUTA
+// LLAMO AL SLASH Y LO IMPORTO CON EL SEGUNDO PARAMETRO
 app.use ('/views', viewsRouter)
+app.use('/views', newProductsRouter )
 
 app.use('/api/products/', productsRouter)
 app.use('/api/carts/', cartsRouter)

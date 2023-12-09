@@ -10,4 +10,13 @@ router.get('/', (req,res) =>{
     })
   })
 
+
+//   router.get('/produ', (req,res) =>{
+//     res.render('productos', {
+//       title: 'TIENDITA de productos',
+//       name: 'usuario'
+//     })
+//   })
+
+
 module.exports = router
