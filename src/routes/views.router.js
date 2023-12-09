@@ -15,6 +15,18 @@ router.get('/', (req,res) =>{
 
 
 
+//   import { Router } from "express";
 
+// const viewsRouter = Router();
+
+// viewsRouter.get("/", (req, res) => {
+//   res.render("home");
+// });
+
+// viewsRouter.get("/realtimeproducts", async (req, res) => {
+//   res.render("real-time-products");
+// });
+
+// export { viewsRouter };
 
 module.exports = router
