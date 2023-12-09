@@ -1,5 +1,8 @@
 const { Router } = require('express')
 
+//http://localhost:8080/views
+//ACA ES EL HOME DE LA TIENDA
+
 const router = Router()
 
 
@@ -11,12 +14,7 @@ router.get('/', (req,res) =>{
   })
 
 
-//   router.get('/produ', (req,res) =>{
-//     res.render('productos', {
-//       title: 'TIENDITA de productos',
-//       name: 'usuario'
-//     })
-//   })
+
 
 
 module.exports = router
