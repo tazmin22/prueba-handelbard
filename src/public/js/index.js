@@ -1,4 +1,8 @@
-console.log('bienvenido al script de index')
+//ACA SIGUE SIENDO FRONT 
+
+const socket = io() ; 
+
+
 
 
 

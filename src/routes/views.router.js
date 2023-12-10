@@ -14,6 +14,13 @@ router.get('/', (req,res) =>{
   })
 
 
+//http://localhost:8080/views/realtimeproducts
+  
+  router.get("/realtimeproducts",  (req, res) => {
+  res.render('real-time-products');
+});
+
+
 
 //   import { Router } from "express";
 

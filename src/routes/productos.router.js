@@ -1,12 +1,17 @@
 const { Router } = require('express')
+const { PManager } = require ('../ProductManager')
+
+
+
 //http://localhost:8080/views/prod
 //ACA RENDERIZA TODOS LOS PRODUCTOS
 //IMPORTANTE PONER EL VIEWS/PROD PARA QUE LA RUTA FUNCIONE
 
-const router = Router()
+//const router = Router()
+const productsRouter = Router();
 
 
-router.get('/prod', (req,res) =>{
+productsRouter.get('/prod', (req,res) =>{
     res.render('productos', {
       title: 'TIENDITA',
       name: 'usuario'
@@ -78,4 +83,4 @@ router.get('/prod', (req,res) =>{
 
 
 
-module.exports = router
+module.exports = productsRouter
