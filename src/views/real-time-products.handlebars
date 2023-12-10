@@ -3,76 +3,67 @@
 </div>
 
 
-{{!-- const socket = io();
+<div>
 
-const productsContainer = document.getElementById("products_table_body");
-
-socket.on("products", (products) => {
-  const allProductsElements = products
-    .map(
-      (product) => `
+    <h1 class="title">Lista de productos (En tiempo real)</h1>
+    <table class="product-list">
         <tr>
-            <td> ${product.title} </td>
-            <td> ${product.price} </td>
-            <td> ${product.code} </td>
+            <th>Título</th>
+            <th>Precio</th>
+            <th>Code</th>
         </tr>
-    `
-    )
-    .join(" ");
 
-  productsContainer.innerHTML = allProductsElements;
-});
+        <tbody id="products_table_body">
 
-// Creando producto con api form (usando fetch y el POST de api/products)ç
-const addProductApiForm = document.getElementById("add_product_api");
+        </tbody>
 
-addProductApiForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  try {
-    const formData = new FormData(addProductApiForm);
+    </table>
 
-    const product = {};
-    formData.forEach((value, key) => {
-      product[key] = value;
-    });
+</div>
 
-    const response = await fetch("/api/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    });
-    const data = await response.json();
-    if (!data.success) {
-      alert(data.message ?? data.error ?? "Ocurrio un error");
+
+<div>
+    <h4>Formulario mediante POST</h4>
+    <div>
+        <form id="add_product_api">
+            <input type="text" name="title" placeholder="Title" />
+            <input type="number" name="price" placeholder="Price" />
+            <input type="text" name="code" placeholder="code" />
+            <button> Enviar! </button>
+        </form>
+
+    </div>
+</div>
+
+<div>
+    <h4>Formulario mediante Web Sockets</h4>
+    <div>
+        <form id="add_product_web_sockets">
+            <input type="text" name="title" placeholder="Title" />
+            <input type="number" name="price" placeholder="Price" />
+            <input type="text" name="code" placeholder="code" />
+            <button> Enviar! </button>
+        </form>
+    </div>
+</div>
+
+
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid;
     }
-  } catch (error) {
-    console.log(error);
-  }
-});
 
-// Creando producto con web socket form (enviando con emit)
-const addProductSocketsForm = document.getElementById(
-  "add_product_web_sockets"
-);
+    .title {
+        text-align: center;
+    }
 
-addProductSocketsForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  try {
-    const formData = new FormData(addProductSocketsForm);
+    .product-list {
+        width: 100%;
+    }
+</style>
 
-    const product = {};
-    formData.forEach((value, key) => {
-      product[key] = value;
-    });
-
-    socket.emit("add-product", product);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-socket.on("add-product-error", (error) => {
-  alert(error);
-}); --}}
+<script src="/socket.io/socket.io.js"></script>
+//<script src="js/realTimeProducts.js"></script>

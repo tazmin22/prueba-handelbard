@@ -3,7 +3,7 @@ const handlebars = require('express-handlebars')
 const{Server} = require('socket.io')
 
 
-const {PManager} = require ("./ProductManager")
+const {PManager} = require ("./managers/ProductManager.js")
 const productsRouter = require ("./routes/apis/products.router.js")
 const cartsRouter = require ("./routes/apis/carts.router.js")
 const viewsRouter = require ("./routes/views.router.js")
@@ -24,7 +24,7 @@ app.set('views', __dirname + '/views')
 
 
 //CONFIGURACION DE RUTA
-// LLAMO AL SLASH Y LO IMPORTO CON EL SEGUNDO PARAMETRO
+
 app.use ('/views', viewsRouter)
 app.use('/views', newProductsRouter )
 
@@ -49,25 +49,5 @@ const io = new Server (serverHtpp)
 
 io.on("connection", async (socket) =>{
   console.log('nuevo cliente contectado')
-  // const product = await PManager.getProducts();
-  // socket.emit("products", products);
 })
 
-// io.on("connection", async (socket) => {
-//   console.log(`New client connected, id: ${socket.id}`);
-//   const products = await productManager.getProducts();
-
-//   socket.emit("products", products);
-
-//   socket.on("add-product", async (product) => {
-//     try {
-//       await productManager.addProduct(product);
-//       const products = await productManager.getProducts();
-
-//       io.sockets.emit("products", products);
-//     } catch (error) {
-//       console.log(error);
-//       socket.emit("add-product-error", error.message);
-//     }
-//   });
-// });
