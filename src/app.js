@@ -43,11 +43,36 @@ const serverHtpp= app.listen(port, () => {
 //TODO ESTE LADO ES EL BACK-END
 
 const io = new Server (serverHtpp)
-
+const productManager = new PManager ("./prueba.json");
 //FUNCIONAMIENTO DE SOCKET
 
 
-io.on("connection", async (socket) =>{
-  console.log('nuevo cliente contectado')
-})
+// io.on("connection", async (socket) =>{
+//   console.log('nuevo cliente contectado')
 
+//   const products = await productManager.getProducts();
+//   socket.emit("products", products);
+// })
+
+io.on("connection", async (socket) => {
+  console.log('Nuevo cliente conectado');
+  const products = await productManager.getProducts();
+
+  socket.emit("products", products);
+
+  socket.on("add-product", async (product) => {
+    try {
+      await productManager.addProduct(product);
+      const products = await productManager.getProducts();
+
+      io.sockets.emit("products", products);
+    } catch (error) {
+      console.log(error);
+      socket.emit("add-product-error", error.message);
+    }
+  });
+
+  socket.on ("message", data=>{
+    console.log(data);
+  })
+});
